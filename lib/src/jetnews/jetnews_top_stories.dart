@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_clone_app/results/posts_results.dart';
-import 'package:flutter_ui_clone_app/src/jetnews/detail_page/detail_page.dart';
+import 'package:flutter_ui_clone_app/src/detail_page/detail_page.dart';
 
 class JetNewsTopStories extends StatelessWidget {
   List<Result> news;

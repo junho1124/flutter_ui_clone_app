@@ -7,6 +7,10 @@ class JetNewsProvider extends ChangeNotifier {
 
   List<Result> _jetNews = [];
 
+  List<String> _peoples = [];
+
+  List<String> _publications = [];
+
   bool _isTab = true;
 
   bool _isLoading = true;
@@ -14,6 +18,10 @@ class JetNewsProvider extends ChangeNotifier {
   bool _isPressed = true;
 
   final Set<int> checked = {};
+
+  final Set<String> bookMark = {};
+
+  final Set<String> like = {};
 
   List<String> android = [
     'Jetpack Compose',
@@ -36,6 +44,10 @@ class JetNewsProvider extends ChangeNotifier {
 
   List<Result> get jetNews => _jetNews;
 
+  List<String> get peoples => _peoples;
+
+  List<String> get publications => _publications;
+
   bool get isTab => _isTab;
 
   bool get isLoading => _isLoading;
@@ -54,6 +66,20 @@ class JetNewsProvider extends ChangeNotifier {
 
   void pressed() {
     _isPressed = !_isPressed;
+    notifyListeners();
+  }
+
+  List<String> people() {
+    for(int i = 0; i < _jetNews.length; i++) {
+        _peoples.add(_jetNews[i].metadata.author.name);
+    }
+    return _peoples;
+  }
+  List<String> publication() {
+    for(int i = 0; i < _jetNews.length; i++) {
+        _publications.add(_jetNews[i].publication.name);
+    }
+    return _publications;
   }
 
   Future<PostsResult> fetchData() async {

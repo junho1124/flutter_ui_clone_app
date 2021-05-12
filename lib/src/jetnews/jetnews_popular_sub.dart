@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_clone_app/results/posts_results.dart';
+import 'package:flutter_ui_clone_app/src/detail_page/detail_page.dart';
+
 
 class JetNewsPopularSub extends StatelessWidget {
   List<Result> news;
@@ -28,60 +30,65 @@ class MakePopularItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 8,),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                  height: 40,
-                  child: Image.network("${news.publication.logoUrl}")),
-            ),
-            SizedBox(width: 8,),
-            Expanded(
-              flex: 5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("BASED ON YOUR HISTORY",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black26
-                    ),),
-                  Text("${news.title}",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold
-                    ),),
-                  Row(
-                    children: [
-                      Text("${news.publication.name} - ${news.metadata.readTimeMinutes} min read",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black38
-                        ),),
-                    ],
-                  )
-                ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPages(news)));
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 8,),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                    height: 40,
+                    child: Image.network("${news.publication.logoUrl}")),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                  alignment: Alignment.centerRight,
-                  icon: Icon(Icons.more_vert),
-                  onPressed: () {}
+              SizedBox(width: 8,),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("BASED ON YOUR HISTORY",
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.black26
+                      ),),
+                    Text("${news.title}",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    Row(
+                      children: [
+                        Text("${news.metadata.author.name} - ${news.metadata.readTimeMinutes} min read",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black38
+                          ),),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 8,),
-        Divider(color: Colors.blueGrey,),
-      ],
+              Expanded(
+                flex: 1,
+                child: IconButton(
+                    alignment: Alignment.centerRight,
+                    icon: Icon(Icons.more_vert),
+                    onPressed: () {}
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 8,),
+          Divider(color: Colors.blueGrey,),
+        ],
+      ),
     );
   }
 }

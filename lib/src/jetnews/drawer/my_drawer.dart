@@ -58,7 +58,6 @@ class _MyDrawerState extends State<MyDrawer> {
                   color: context.read<JetNewsProvider>().isTab ? Colors.black45 : Color(0XFFCF233D),
                 ),),
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => InterestsPage()));
                 Navigator.pop(context);
                 setState(() {
                   context.read<JetNewsProvider>().tabbed();

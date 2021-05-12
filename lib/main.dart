@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_clone_app/src/jetnews/interests_page/interests_page.dart';
+import 'package:flutter_ui_clone_app/src/interests_page/interests_page.dart';
 import 'package:flutter_ui_clone_app/src/jetnews/main_page/my_home_page.dart';
 
 import 'package:flutter_ui_clone_app/src/provider/jetnews_provider.dart';
@@ -24,6 +24,8 @@ class _MyAppState extends State<MyApp> {
 
     context.read<JetNewsProvider>().fetchData().then((jetNewsResult) {
       setState(() {
+        context.read<JetNewsProvider>().people();
+        context.read<JetNewsProvider>().publication();
         for (int i = 0; i < jetNewsResult.result.length; i++) {
           context.read<JetNewsProvider>().jetNews.add(jetNewsResult.result[i]);
         }
