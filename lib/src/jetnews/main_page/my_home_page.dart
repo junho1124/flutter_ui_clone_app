@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
         : Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: Text('JetNews'),
+        title: Text('Jetnews'),
       ),
       drawer: MyDrawer(),
       body: SingleChildScrollView(
