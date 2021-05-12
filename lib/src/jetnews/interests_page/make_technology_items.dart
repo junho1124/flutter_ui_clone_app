@@ -52,7 +52,7 @@ class _MakeTechnologyItemsState extends State<MakeTechnologyItems> {
                                 fontWeight: FontWeight.w600,
                               ),)),
                         IconButton(
-                            icon: context.read<JetNewsProvider>().tecChecked.contains(widget.item.key)
+                            icon: context.read<JetNewsProvider>().checked.contains(widget.item.key + 6)
                                 ? Icon(Icons.check_circle,
                               color: Color(0XFFCF233D),)
                                 : Icon(Icons.add_circle_outline_sharp,
@@ -60,12 +60,12 @@ class _MakeTechnologyItemsState extends State<MakeTechnologyItems> {
                             iconSize: 40,
                             onPressed: () {
                               setState(() {
-                              if(context.read<JetNewsProvider>().technologyIsPressed) {
-                                context.read<JetNewsProvider>().tecChecked.add(widget.item.key);
-                                context.read<JetNewsProvider>().tecPressed();
+                              if(context.read<JetNewsProvider>().isPressed) {
+                                context.read<JetNewsProvider>().checked.add(widget.item.key + 6);
+                                context.read<JetNewsProvider>().pressed();
                               } else {
-                                context.read<JetNewsProvider>().tecChecked.remove(widget.item.key);
-                                context.read<JetNewsProvider>().tecPressed();
+                                context.read<JetNewsProvider>().checked.remove(widget.item.key + 6);
+                                context.read<JetNewsProvider>().pressed();
                               }
                               });
                             }

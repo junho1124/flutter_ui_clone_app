@@ -52,7 +52,7 @@ class _MakeAndroidItemsState extends State<MakeAndroidItems> {
                                 fontWeight: FontWeight.w600,
                               ),)),
                         IconButton(
-                            icon: context.read<JetNewsProvider>().andChecked.contains(widget.item.key)
+                            icon: context.read<JetNewsProvider>().checked.contains(widget.item.key)
                                 ? Icon(Icons.check_circle,
                               color: Color(0XFFCF233D),)
                                 : Icon(Icons.add_circle_outline_sharp,
@@ -60,12 +60,12 @@ class _MakeAndroidItemsState extends State<MakeAndroidItems> {
                             iconSize: 40,
                             onPressed: () {
                               setState(() {
-                              if(context.read<JetNewsProvider>().androidIsPressed) {
-                                context.read<JetNewsProvider>().andChecked.add(widget.item.key);
-                                context.read<JetNewsProvider>().andPressed();
+                              if(context.read<JetNewsProvider>().isPressed) {
+                                context.read<JetNewsProvider>().checked.add(widget.item.key);
+                                context.read<JetNewsProvider>().pressed();
                               } else {
-                                context.read<JetNewsProvider>().andChecked.remove(widget.item.key);
-                                context.read<JetNewsProvider>().andPressed();
+                                context.read<JetNewsProvider>().checked.remove(widget.item.key);
+                                context.read<JetNewsProvider>().pressed();
                               }
                               });
                             }

@@ -52,7 +52,7 @@ class _MakeProgrammingItemsState extends State<MakeProgrammingItems> {
                                 fontWeight: FontWeight.w600,
                               ),)),
                         IconButton(
-                            icon: context.read<JetNewsProvider>().proChecked.contains(widget.item.key)
+                            icon: context.read<JetNewsProvider>().checked.contains(widget.item.key + 3)
                                 ? Icon(Icons.check_circle,
                               color: Color(0XFFCF233D),)
                                 : Icon(Icons.add_circle_outline_sharp,
@@ -60,12 +60,12 @@ class _MakeProgrammingItemsState extends State<MakeProgrammingItems> {
                             iconSize: 40,
                             onPressed: () {
                               setState(() {
-                              if(context.read<JetNewsProvider>().programmingIsPressed) {
-                                context.read<JetNewsProvider>().proChecked.add(widget.item.key);
-                                context.read<JetNewsProvider>().proPressed();
+                              if(context.read<JetNewsProvider>().isPressed) {
+                                context.read<JetNewsProvider>().checked.add(widget.item.key + 3);
+                                context.read<JetNewsProvider>().pressed();
                               } else {
-                                context.read<JetNewsProvider>().proChecked.remove(widget.item.key);
-                                context.read<JetNewsProvider>().proPressed();
+                                context.read<JetNewsProvider>().checked.remove(widget.item.key + 3);
+                                context.read<JetNewsProvider>().pressed();
                               }
                               });
                             }
