@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_clone_app/results/posts_results.dart';
 
 class JetNewsPopularSub extends StatelessWidget {
-  const JetNewsPopularSub({
+  List<Result> news;
+
+  JetNewsPopularSub(this.news);
+
+  @override
+  Widget build(BuildContext context) {
+    List<MakePopularItems> items = [];
+    for (int i = 4; i < 7; i++) {
+      items.add(MakePopularItems(news: news[i]));
+    }
+    return Column(
+      children: items,
+    );
+  }
+}
+
+class MakePopularItems extends StatelessWidget {
+  const MakePopularItems({
     Key key,
+    @required this.news,
   }) : super(key: key);
+
+  final Result news;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +39,7 @@ class JetNewsPopularSub extends StatelessWidget {
               flex: 1,
               child: Container(
                   height: 40,
-                  child: Image.network("https://cdn-images-1.medium.com/max/258/1*u7oZc2_5mrkcFaxkXEyfYA@2x.png")),
+                  child: Image.network("${news.publication.logoUrl}")),
             ),
             SizedBox(width: 8,),
             Expanded(
@@ -31,14 +52,14 @@ class JetNewsPopularSub extends StatelessWidget {
                         fontSize: 15,
                         color: Colors.black26
                     ),),
-                  Text("-------------------제목--------------------",
+                  Text("${news.title}",
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold
                     ),),
                   Row(
                     children: [
-                      Text("게시자 - 지난 시간",
+                      Text("${news.publication.name} - ${news.metadata.readTimeMinutes} min read",
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.black38

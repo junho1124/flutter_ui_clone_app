@@ -3,9 +3,7 @@ import 'package:flutter_ui_clone_app/results/posts_results.dart';
 import 'package:flutter_ui_clone_app/src/jetnews/detail_page/detail_page.dart';
 
 class JetNewsTopStories extends StatelessWidget {
-  Result news;
-
-
+  List<Result> news;
 
   JetNewsTopStories(this.news);
 
@@ -13,7 +11,7 @@ class JetNewsTopStories extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPages(news)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPages(news[0])));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,24 +25,24 @@ class JetNewsTopStories extends StatelessWidget {
           SizedBox(height: 16,),
           Center(
             child: Image.network(
-                "${news.publication.logoUrl}"
+                "${news[0].publication.logoUrl}"
             ),
           ),
           SizedBox(height: 16,),
-          Text('${news.title}',
+          Text('${news[0].title}',
             style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold
             ),
           ),
           SizedBox(height: 4,),
-          Text('${news.metadata.author.name}',
+          Text('${news[0].metadata.author.name}',
             style: TextStyle(
                 fontSize: 16,
                 color: Colors.black54
             ),),
           SizedBox(height: 4,),
-          Text('${news.metadata.date}',
+          Text('${news[0].metadata.date}',
             style: TextStyle(
                 fontSize: 16,
                 color: Colors.black38

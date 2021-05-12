@@ -1,13 +1,31 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_clone_app/results/posts_results.dart';
 
-class PopularCard extends StatelessWidget {
-  const PopularCard({
-    Key key,
-  }) : super(key: key);
+class PopularCard extends StatelessWidget{
+  List<Result> news;
+
+  PopularCard(this.news);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+        items: news.map((e) => MakeCards(e)).toList(),
+        options: CarouselOptions(enableInfiniteScroll: false));
+  }
+}
+
+class MakeCards extends StatelessWidget {
+  MakeCards(this.news);
+
+  final Result news;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+    child: Container(
+      height: 600,
       child: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,7 +34,7 @@ class PopularCard extends StatelessWidget {
               height: 100,
               width: 400,
               child: Image.network(
-                  "https://cdn-images-1.medium.com/max/258/1*u7oZc2_5mrkcFaxkXEyfYA@2x.png"),
+                  "${news.publication.logoUrl}"),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -24,25 +42,27 @@ class PopularCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '제목',
+                    '${news.title}',
                     style: TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.bold),
+                        fontSize: 20, fontWeight: FontWeight.w500),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 2,
                   ),
                   Text(
-                    '게시자',
+                    '${news.publication.name}',
                     style: TextStyle(
-                        fontSize: 16, color: Colors.black54),
+                        fontSize: 12, color: Colors.black54),
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 2,
                   ),
                   Text(
-                    '게시일 - 지난 시간',
+                    '${news.metadata.date} - ${news.metadata.readTimeMinutes} min read',
                     style: TextStyle(
-                        fontSize: 16, color: Colors.black38),
+                        fontSize: 12, color: Colors.black38),
                   ),
                 ],
               ),
@@ -50,6 +70,7 @@ class PopularCard extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }

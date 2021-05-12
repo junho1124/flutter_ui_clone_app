@@ -8,11 +8,12 @@ class JetNewsTopSub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<MakeItems> items = [];
+    for (int i = 1; i < 3; i++) {
+      items.add(MakeItems(news: news[i]));
+    }
     return Column(
-      children: [
-        MakeItems(news: news[1]),
-        MakeItems(news: news[2]),
-      ],
+      children: items
     );
   }
 }
@@ -58,7 +59,7 @@ class MakeItems extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${news.metadata.date}",
+                        "${news.publication.name} - ${news.metadata.readTimeMinutes} min read",
                         style: TextStyle(fontSize: 16, color: Colors.black38),
                       ),
                     ],
