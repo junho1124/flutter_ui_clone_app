@@ -6,8 +6,10 @@ import 'package:flutter_ui_clone_app/src/provider/jetnews_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [ChangeNotifierProvider(create: (_) => JetNewsProvider())],
-  child: MyApp(),));
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => JetNewsProvider())],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -16,7 +18,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -31,21 +32,17 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.red,
-          appBarTheme: AppBarTheme(backgroundColor: Color(0XFFCF233D))),
-      home: Consumer<JetNewsProvider>(builder: (BuildContext context, JetNewsProvider, Widget child) {
-       return JetNewsProvider.isTab
-            ? MyHomePage()
-            : InterestsPage();
-      },)
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primarySwatch: Colors.red,
+            appBarTheme: AppBarTheme(backgroundColor: Color(0XFFCF233D))),
+        home: Consumer<JetNewsProvider>(
+          builder: (BuildContext context, JetNewsProvider, Widget child) {
+            return JetNewsProvider.isTab ? MyHomePage() : InterestsPage();
+          },
+        ));
   }
 }
-
-

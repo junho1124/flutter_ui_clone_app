@@ -11,6 +11,36 @@ class JetNewsProvider extends ChangeNotifier {
 
   bool _isLoading = true;
 
+  bool _androidIsPressed = true;
+
+  bool _programmingIsPressed = true;
+
+  bool _technologyIsPressed = true;
+
+  final Set<int> andChecked = {};
+
+  final Set<int> proChecked = {};
+
+  final Set<int> tecChecked = {};
+
+  List<String> android = [
+    'Jetpack Compose',
+    'Kotlin',
+    'Jetpack'
+  ];
+
+  List<String> programming = [
+    'Kotlin',
+    'Declarative UIs',
+    'Java'
+  ];
+
+  List<String> tecgnology = [
+    'Pixel',
+    'Table',
+    'Provider'
+  ];
+
 
   List<Result> get jetNews => _jetNews;
 
@@ -18,6 +48,11 @@ class JetNewsProvider extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  bool get androidIsPressed => _androidIsPressed;
+
+  bool get programmingIsPressed => _programmingIsPressed;
+
+  bool get technologyIsPressed => _technologyIsPressed;
 
   void tabbed() {
     _isTab = !_isTab;
@@ -27,6 +62,16 @@ class JetNewsProvider extends ChangeNotifier {
   void loading() {
     _isLoading = !_isLoading;
     notifyListeners();
+  }
+
+  void andPressed() {
+    _androidIsPressed = !_androidIsPressed;
+  }
+  void proPressed() {
+    _programmingIsPressed = !_programmingIsPressed;
+  }
+  void tecPressed() {
+    _technologyIsPressed = !_technologyIsPressed;
   }
 
   Future<PostsResult> fetchData() async {
